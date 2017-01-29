@@ -16,7 +16,5 @@
     "url": "https://github.com/isMaxVelychko/pokemons/issues"
   },
   "homepage": "https://github.com/isMaxVelychko/pokemons#readme",
-  "dependencies": {
-    "jquery": "^3.1.1"
-  }
+  "dependencies": {}
 }
