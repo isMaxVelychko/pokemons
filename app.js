@@ -1,12 +1,18 @@
+"use strict";
+import {getPokemons} from './services'
 
-getPokemons().then(function(response) {
-    var list = document.getElementById('list');
+drawListPokemons();
 
-    var data = JSON.parse(response);
-    data.results.forEach(function(item) {
-         var li = document.createElement('li');
-         var text = document.createTextNode(item.name);
-         li.appendChild(text);
-         list.appendChild(li);
-     })
-});
+function drawListPokemons() {
+    getPokemons().then(function(response) {
+        let list = document.getElementById('list');
+
+        let data = JSON.parse(response);
+        data.results.forEach(item => {
+             let li = document.createElement('li');
+             let text = document.createTextNode(item.name);
+             li.appendChild(text);
+             list.appendChild(li);
+         })
+    });
+}

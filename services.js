@@ -1,14 +1,14 @@
 
-var apiUrl = 'http://pokeapi.co/api/v2/';
+const apiUrl = 'http://pokeapi.co/api/v2/';
 
 function getPokemons() {
-    var queryUrl = apiUrl + 'pokemon?limit=12';
+    let queryUrl = apiUrl + 'pokemon?limit=12';
     return makeQuery('GET', queryUrl);
 }
 
 function makeQuery(method, url) {
-    return new Promise(function(resolve, reject) {
-        var req = new XMLHttpRequest();
+    return new Promise((resolve, reject) => {
+        let req = new XMLHttpRequest();
         req.open(method, url);
         req.onload = onLoad;
         req.onerror = onError;
@@ -27,3 +27,5 @@ function makeQuery(method, url) {
         }
     });
 };
+
+export {getPokemons};
