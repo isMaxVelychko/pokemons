@@ -1,12 +1,6 @@
+"use strict";
 
-const apiUrl = 'http://pokeapi.co/api/v2/';
-
-function getPokemons() {
-    let queryUrl = apiUrl + 'pokemon?limit=12';
-    return makeQuery('GET', queryUrl);
-}
-
-function makeQuery(method, url) {
+export default function ajaxHelper(method, url) {
     return new Promise((resolve, reject) => {
         let req = new XMLHttpRequest();
         req.open(method, url);
@@ -27,5 +21,3 @@ function makeQuery(method, url) {
         }
     });
 };
-
-export {getPokemons};
