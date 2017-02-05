@@ -1,5 +1,6 @@
 "use strict";
 import {getPokemons} from './scripts/api'
+import filter from './scripts/filter'
 
 let nextListLink = null;
 let typeCollection = [];
@@ -10,7 +11,7 @@ document.addEventListener("DOMContentLoaded", function() {
     let loadMoreElement = document.getElementById('loadMore');
     let formElement = document.getElementById('form');
     loadMoreElement.onclick = loadMore;
-    formElement.onsubmit = filterPokemons;
+    formElement.onsubmit = onSubmit;
 });
 
 
@@ -41,32 +42,9 @@ function loadMore() {
     drawListPokemons(nextListLink);
 }
 
-function filterPokemons(event) {
+function onSubmit(event) {
     event.preventDefault();
-
-    let listElements = document.querySelectorAll("li");
-    let searchText = this.type.value;
-    let matchedItems = [];
-    typeCollection.forEach(item => {
-        item.types.forEach(type => {
-            if(searchText === type) {
-                matchedItems.push(item.name);
-            }
-        })
-    });
-
-    showElements(listElements);
-
-    if(matchedItems.length) {
-        listElements.forEach(element => {
-            let attrName = element.getAttribute('name');
-            if(matchedItems.indexOf(attrName) == -1) {
-                hideElements([element]);
-            }
-        });
-    } else if(searchText) {
-        hideElements(listElements);
-    }
+    filter(document.querySelectorAll("li"), this.type.value, typeCollection);
 }
 
 function setTypeCollection(link) {
@@ -77,17 +55,5 @@ function setTypeCollection(link) {
             types.push(item.type.name);
         });
         typeCollection.push({name: pokemonData.name, types: types});
-    });
-}
-
-function showElements(elements) {
-    elements.forEach(item => {
-        item.style.display = "block";
-    });
-}
-
-function hideElements(elements) {
-    elements.forEach(item => {
-        item.style.display = "none";
     });
 }
