@@ -11,12 +11,16 @@
     <div class="header">
         <h1>pokemons</h1>
     </div>
-    <div class="listWrapper">
-        <form id="form">
+    <div class="listWrapper" style="position: relative;">
+        <form id="form" style="display: inline-block;">
             Pokemon type:
             <input type="text" name="type" placeholder="type">
             <input type="submit" value="Submit">
-        </form><br>
+        </form>
+        <div style="position: absolute; right: 100px; display: inline-block">
+            <p>favorites</p>
+            <ul id="listFavorites"></ul>
+        </div>
         <ul id="list"></ul>
         <button id="loadMore">load more</button>
     </div>

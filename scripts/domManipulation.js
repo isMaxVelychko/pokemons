@@ -12,4 +12,8 @@ function hideElements(elements) {
     });
 }
 
-export {showElements, hideElements};
+function setBackground(element, color) {
+    element.style.background = color;
+}
+
+export {showElements, hideElements, setBackground};
